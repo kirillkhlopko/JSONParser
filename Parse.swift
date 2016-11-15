@@ -1,18 +1,45 @@
 //
-//  Parse.swift
-//  SwiftyTwitter
+// Parse.swift
 //
-//  Created by Kirill Khlopko on 11/11/16.
-//  Copyright © 2016 Kirill Khlopko. All rights reserved.
+// MIT License
 //
+// Copyright (c) 2016 Kirill Khlopko
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+
 import Foundation
 
-// MARK: - Parse function
+// MARK: - Parse functions
+
 public func parse<In, Out: Convertible>(_ input: In?) -> Out {
     return Out.cast(input)
 }
 
+public func parse<Out>(_ input: Any?, _ map: (Any) -> (Out)) -> [Out] {
+    let array: [Any] = parse(input)
+    let result = array.map(map)
+    return result
+}
+
 // MARK: - Convertible
+
 public protocol Convertible {
     static func cast<T>(_ input: T) -> Self
 }
