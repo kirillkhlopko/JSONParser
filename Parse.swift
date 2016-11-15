@@ -24,10 +24,6 @@
 // SOFTWARE.
 //
 
-import Foundation
-
-// MARK: - Parse functions
-
 public func parse<In, Out: Convertible>(_ input: In?) -> Out {
     return Out.cast(input)
 }
