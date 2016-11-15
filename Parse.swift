@@ -28,7 +28,7 @@ public func parse<In, Out: Convertible>(_ input: In?) -> Out {
     return Out.cast(input)
 }
 
-public func parse<Out>(_ input: Any?, _ map: (Any) -> (Out)) -> [Out] {
+public func parse<In, Out>(_ input: In?, _ map: (In) -> (Out)) -> [Out] {
     let array: [Any] = parse(input)
     let result = array.map(map)
     return result
